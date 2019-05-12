@@ -12,6 +12,7 @@ namespace TextLand.BL.Models
         public int NumberOfCharacters { get; set; }
         public UserDto ExecutingUser { get; set; }
         public UserDto AddingUser { get; set; }
+        public string Content { get; set; }
         public bool Status { get; set; }
     }
 }

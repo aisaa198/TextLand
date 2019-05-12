@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TextLand.BL.Models;
+using TextLand.Common;
 using TextLand.DAL.Models;
 using TextLand.DAL.Repositories;
 
@@ -56,6 +58,50 @@ namespace TextLand.BL.Services
         public List<OrderDto> GetUndoneOrders()
         {
             return _ordersRepository.GetUndoneOrders().Select(order => _mapper.Map<OrderDto>(order)).ToList();
+        }
+
+        public OrderDto AddTextToOrder(int orderId, string text)
+        {
+            var order = _ordersRepository.GetOrderById(orderId);
+            if (order == null) return null;
+            if (order.Status == true)
+            {
+                Console.WriteLine("Order has already done!");
+                return null;
+            }
+            if (text.Length < order.NumberOfCharacters)
+            {
+                Console.WriteLine("Not enough characters!");
+                return null;
+            }
+            order.Content = text;
+            order.Status = true;
+            var orderWithText = _ordersRepository.AddTextToOrder(order);
+
+            return _mapper.Map<OrderDto>(orderWithText);
+        }
+
+        private double CountValue(OrderDto order)
+        {
+            double constForText = 0;
+            switch (order.TypeOfText)
+            {
+                case TextType.ProductDescription:
+                    constForText = 1.21;
+                    break;
+                case TextType.Translation:
+                    constForText = 3.54;
+                    break;
+                case TextType.BlogText:
+                    constForText = 4.87;
+                    break;
+                case TextType.SpecialistText:
+                    constForText = 8.99;
+                    break;
+            }
+
+            var orderValue = constForText * order.NumberOfCharacters / 1000;
+            return orderValue;
         }
     }
 }

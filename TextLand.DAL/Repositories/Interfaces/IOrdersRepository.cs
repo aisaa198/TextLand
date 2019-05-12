@@ -7,5 +7,7 @@ namespace TextLand.DAL.Repositories
     {
         Order AddOrder(Order order);
         List<Order> GetUndoneOrders();
+        Order AddTextToOrder(Order order);
+        Order GetOrderById(int orderId);
     }
 }

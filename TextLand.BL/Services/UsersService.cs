@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using System.Collections.Generic;
 using TextLand.BL.Models;
 using TextLand.DAL.Models;
 using TextLand.DAL.Repositories;
@@ -34,9 +33,13 @@ namespace TextLand.BL.Services
             var user = _usersRepository.GetUserByEmail(email);
             return _mapper.Map<UserDto>(user);
         }
+
         public UserDto RegisterUser(UserDto userDto)
         {
-            if (userDto == null) return null;
+            if (userDto == null || string.IsNullOrEmpty(userDto.Email) || string.IsNullOrEmpty(userDto.Password) || string.IsNullOrEmpty(userDto.Name)) return null;
+            var userWithTheSameEmail = _usersRepository.GetUserByEmail(userDto.Email);
+            if (userWithTheSameEmail != null) return null;
+
             var user = _mapper.Map<User>(userDto);
             var registeredUser = _usersRepository.RegisterUser(user);
             return _mapper.Map<UserDto>(registeredUser);
@@ -47,5 +50,20 @@ namespace TextLand.BL.Services
             var createdUser = CreateUser();
             return RegisterUser(createdUser);
         }
+
+        public UserDto GetUserById(int userId)
+        {
+            var user = _usersRepository.GetUserById(userId);
+            return _mapper.Map<UserDto>(user);
+        }
+
+        public bool DeleteUser(int userId, string password)
+        {
+            var userToDelete = _usersRepository.GetUserById(userId);
+            if (userToDelete == null) return false;
+            return (userToDelete.Password != password)? false : _usersRepository.DeleteUser(userToDelete, password);
+        }
+
+        
     }
 }

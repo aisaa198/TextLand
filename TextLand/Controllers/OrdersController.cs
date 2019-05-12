@@ -13,7 +13,8 @@ namespace TextLand.Controllers
         {
             _ordersService = ordersService;
         }
-        
+
+        [Route("api/orders/WriteText")]
         public OrderDto PostExampleOrder()
         {
             return _ordersService.AddExampleOrder();
@@ -22,6 +23,13 @@ namespace TextLand.Controllers
         public List<OrderDto> GetUndoneOrders()
         {
             return _ordersService.GetUndoneOrders();
+        }
+
+        [HttpPut]
+        [Route("api/orders/WriteText")]
+        public OrderDto WriteText(int orderId, string text)
+        {
+            return _ordersService.AddTextToOrder(orderId, text);
         }
     }
 }

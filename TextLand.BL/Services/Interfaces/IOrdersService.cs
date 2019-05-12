@@ -8,5 +8,6 @@ namespace TextLand.BL.Services
         OrderDto AddExampleOrder();
         OrderDto AddOrder(OrderDto orderDto);
         List<OrderDto> GetUndoneOrders();
+        OrderDto AddTextToOrder(int orderId, string text);
     }
 }

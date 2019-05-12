@@ -7,5 +7,7 @@ namespace TextLand.BL.Services
         UserDto RegisterUser(UserDto userDto);
         UserDto AddExampleUser();
         UserDto GetUserByEmail(string email);
+        UserDto GetUserById(int userId);
+        bool DeleteUser(int userId, string password);
     }
 }

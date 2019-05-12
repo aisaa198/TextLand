@@ -21,9 +21,20 @@ namespace TextLand.DAL.Repositories
                 dbContext.SaveChanges();
                 return newOrder;
             }
-            
+        }
 
+        public Order AddTextToOrder(Order order)
+        {
+            using (var dbContext = new TextLandDbContext())
+            {
+                if (order == null) return null;
 
+                var modifiedOrder = dbContext.Orders.Attach(order);
+                dbContext.Entry(modifiedOrder).Property(x => x.Content).IsModified = true;
+                dbContext.Entry(modifiedOrder).Property(x => x.Status).IsModified = true;
+                dbContext.SaveChanges();
+                return modifiedOrder;
+            }
         }
 
         public List<Order> GetUndoneOrders()
@@ -31,6 +42,14 @@ namespace TextLand.DAL.Repositories
             using (var dbContext = new TextLandDbContext())
             {
                 return dbContext.Orders.Where(order => order.Status == false).ToList();
+            }
+        }
+
+        public Order GetOrderById(int orderId)
+        {
+            using (var dbContext = new TextLandDbContext())
+            {
+                return dbContext.Orders.SingleOrDefault(order => order.OrderId == orderId);
             }
         }
     }

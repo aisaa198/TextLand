@@ -12,6 +12,7 @@ namespace TextLand.DAL.Models
         public int NumberOfCharacters { get; set; }
         public User ExecutingUser { get; set; }
         public User AddingUser { get; set; }
+        public string Content { get; set; }
         public bool Status { get; set; }
     }
 }

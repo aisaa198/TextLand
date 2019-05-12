@@ -52,6 +52,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\TextLandDbContext.cs" />
+    <Compile Include="Migrations\201904231930420_InitialCreate.cs" />
+    <Compile Include="Migrations\201904231930420_InitialCreate.Designer.cs">
+      <DependentUpon>201904231930420_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904271925095_AddedTextToOrder.cs" />
+    <Compile Include="Migrations\201904271925095_AddedTextToOrder.Designer.cs">
+      <DependentUpon>201904271925095_AddedTextToOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Modules\DalModule.cs" />
@@ -70,6 +79,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904231930420_InitialCreate.resx">
+      <DependentUpon>201904231930420_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904271925095_AddedTextToOrder.resx">
+      <DependentUpon>201904271925095_AddedTextToOrder.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
