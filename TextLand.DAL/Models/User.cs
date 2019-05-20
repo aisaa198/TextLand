@@ -19,5 +19,6 @@ namespace TextLand.DAL.Models
         public decimal AccountForAddingOrders { get; set; }
         public decimal AccountForCompletedOrders { get; set; }
         public decimal Rating { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

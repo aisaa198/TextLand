@@ -14,5 +14,6 @@ namespace TextLand.BL.Models
         public UserDto AddingUser { get; set; }
         public string Content { get; set; }
         public bool Status { get; set; }
+        public double Value { get; set; }
     }
 }

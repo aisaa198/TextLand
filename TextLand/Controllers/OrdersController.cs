@@ -14,7 +14,7 @@ namespace TextLand.Controllers
             _ordersService = ordersService;
         }
 
-        [Route("api/orders/WriteText")]
+        [Route("api/orders/PostExampleOrder")]
         public OrderDto PostExampleOrder()
         {
             return _ordersService.AddExampleOrder();

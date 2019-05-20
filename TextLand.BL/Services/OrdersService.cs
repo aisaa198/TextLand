@@ -50,6 +50,7 @@ namespace TextLand.BL.Services
         public OrderDto AddOrder(OrderDto orderDto)
         {
             if (orderDto == null) return null;
+            orderDto.Value = CountValue(orderDto);
             var order = _mapper.Map<Order>(orderDto);
             var addedOrder = _ordersRepository.AddOrder(order);
             return _mapper.Map<OrderDto>(addedOrder);
@@ -83,6 +84,7 @@ namespace TextLand.BL.Services
 
         private double CountValue(OrderDto order)
         {
+            if (order == null) return 0;
             double constForText = 0;
             switch (order.TypeOfText)
             {
@@ -98,6 +100,8 @@ namespace TextLand.BL.Services
                 case TextType.SpecialistText:
                     constForText = 8.99;
                     break;
+                default:
+                    return 0;
             }
 
             var orderValue = constForText * order.NumberOfCharacters / 1000;
