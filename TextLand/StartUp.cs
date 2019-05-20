@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Ninject.Web.Common.OwinHost;
 using Ninject.Web.WebApi.OwinHost;
 using Owin;
+using TextLand.App_Start;
 
 namespace TextLand.WebApi
 {
@@ -13,6 +14,7 @@ namespace TextLand.WebApi
         public void Configuration(IAppBuilder app)
         {
             var config = new HttpConfiguration();
+            SwaggerConfig.Register(config);
             config.EnableCors(new EnableCorsAttribute("*", "*", "*", "X-Custom-Reader"));
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             config.MapHttpAttributeRoutes();

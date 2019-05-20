@@ -52,3 +52,8 @@ C:\Users\User\source\repos\TextLand\TextLand\bin\Debug\AutoMapper.xml
 C:\Users\User\source\repos\TextLand\TextLand\bin\Debug\TextLand.DAL.pdb
 C:\Users\User\source\repos\TextLand\TextLand\bin\Debug\TextLand.DAL.dll.config
 C:\Users\User\source\repos\TextLand\TextLand\bin\Debug\System.ValueTuple.xml
+C:\Users\User\source\repos\TextLand\TextLand\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\User\source\repos\TextLand\TextLand\bin\Debug\Swashbuckle.Core.dll
+C:\Users\User\source\repos\TextLand\TextLand\bin\Debug\System.Web.Http.WebHost.dll
+C:\Users\User\source\repos\TextLand\TextLand\bin\Debug\WebActivatorEx.dll
+C:\Users\User\source\repos\TextLand\TextLand\bin\Debug\System.Web.Http.WebHost.xml
