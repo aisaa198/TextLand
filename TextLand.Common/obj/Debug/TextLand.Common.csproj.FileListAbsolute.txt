@@ -1,6 +1,5 @@
 C:\Users\User\source\repos\TextLand\TextLand.Common\bin\Debug\TextLand.Common.dll
 C:\Users\User\source\repos\TextLand\TextLand.Common\bin\Debug\TextLand.Common.pdb
-C:\Users\User\source\repos\TextLand\TextLand.Common\obj\Debug\TextLand.Common.csprojResolveAssemblyReference.cache
 C:\Users\User\source\repos\TextLand\TextLand.Common\obj\Debug\TextLand.Common.csproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\TextLand\TextLand.Common\obj\Debug\TextLand.Common.dll
 C:\Users\User\source\repos\TextLand\TextLand.Common\obj\Debug\TextLand.Common.pdb

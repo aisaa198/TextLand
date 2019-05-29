@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TextLand.BL.Models;
+using TextLand.BL.Services.Interfaces;
 using TextLand.Common;
 using TextLand.DAL.Models;
 using TextLand.DAL.Repositories;
@@ -106,6 +107,21 @@ namespace TextLand.BL.Services
 
             var orderValue = constForText * order.NumberOfCharacters / 1000;
             return orderValue;
+        }
+
+        public bool ExportOrder(int orderId, string fileName)
+        {
+            var serializer = new JsonSerializer();
+            try
+            {
+                var order = _ordersRepository.GetOrderById(orderId);
+                return serializer.Export(fileName, order);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
     }
 }

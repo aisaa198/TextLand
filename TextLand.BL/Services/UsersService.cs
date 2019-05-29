@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TextLand.BL.Models;
+using TextLand.BL.Services.Interfaces;
 using TextLand.DAL.Models;
 using TextLand.DAL.Repositories;
 

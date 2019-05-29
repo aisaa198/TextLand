@@ -1,6 +1,6 @@
 ﻿using TextLand.BL.Models;
 
-namespace TextLand.BL.Services
+namespace TextLand.BL.Services.Interfaces
 {
     public interface IUsersService
     {

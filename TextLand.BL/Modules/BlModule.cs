@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Ninject.Modules;
 using TextLand.BL.Services;
+using TextLand.BL.Services.Interfaces;
 using TextLand.DAL.Modules;
 
 namespace TextLand.BL.Modules

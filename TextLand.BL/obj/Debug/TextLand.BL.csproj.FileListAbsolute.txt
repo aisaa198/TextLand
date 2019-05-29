@@ -18,3 +18,5 @@ C:\Users\User\source\repos\TextLand\TextLand.BL\bin\Debug\AutoMapper.xml
 C:\Users\User\source\repos\TextLand\TextLand.BL\bin\Debug\Ninject.xml
 C:\Users\User\source\repos\TextLand\TextLand.BL\bin\Debug\System.ValueTuple.xml
 C:\Users\User\source\repos\TextLand\TextLand.BL\bin\Debug\EntityFramework.xml
+C:\Users\User\source\repos\TextLand\TextLand.BL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\User\source\repos\TextLand\TextLand.BL\bin\Debug\Newtonsoft.Json.xml

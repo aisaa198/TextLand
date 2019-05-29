@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TextLand.BL.Models;
 
-namespace TextLand.BL.Services
+namespace TextLand.BL.Services.Interfaces
 {
     public interface IOrdersService
     {
@@ -9,5 +9,6 @@ namespace TextLand.BL.Services
         OrderDto AddOrder(OrderDto orderDto);
         List<OrderDto> GetUndoneOrders();
         OrderDto AddTextToOrder(int orderId, string text);
+        bool ExportOrder(int orderId, string fileName);
     }
 }

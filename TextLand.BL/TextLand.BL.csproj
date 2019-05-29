@@ -33,6 +33,9 @@
     <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
@@ -54,8 +57,10 @@
     <Compile Include="Modules\MapperProvider.cs" />
     <Compile Include="Modules\BlModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Interfaces\IDataSerializer.cs" />
     <Compile Include="Services\Interfaces\IOrdersService.cs" />
     <Compile Include="Services\Interfaces\IUsersService.cs" />
+    <Compile Include="Services\JsonSerializer.cs" />
     <Compile Include="Services\OrdersService.cs" />
     <Compile Include="Services\UsersService.cs" />
   </ItemGroup>

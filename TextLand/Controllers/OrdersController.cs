@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using TextLand.BL.Models;
-using TextLand.BL.Services;
+using TextLand.BL.Services.Interfaces;
 
 namespace TextLand.Controllers
 {
@@ -19,10 +19,18 @@ namespace TextLand.Controllers
         {
             return _ordersService.AddExampleOrder();
         }
-        
+
+        [Route("api/orders/GetUndoneOrders")]
         public List<OrderDto> GetUndoneOrders()
         {
             return _ordersService.GetUndoneOrders();
+        }
+
+        [HttpGet]
+        [Route("api/orders/ExportOrder")]
+        public bool ExportOrder(int orderId, string fileName)
+        {
+            return _ordersService.ExportOrder(orderId, fileName);
         }
 
         [HttpPut]
