@@ -2,7 +2,7 @@
 using TextLand.BL.Models;
 using TextLand.BL.Services.Interfaces;
 using TextLand.DAL.Models;
-using TextLand.DAL.Repositories;
+using TextLand.DAL.Repositories.Interfaces;
 
 namespace TextLand.BL.Services
 {
@@ -65,6 +65,18 @@ namespace TextLand.BL.Services
             return (userToDelete.Password != password)? false : _usersRepository.DeleteUser(userToDelete, password);
         }
 
-        
+        public UserDto LogIn(string email, string password)
+        {
+            var user = _usersRepository.LogIn(email, password);
+            return _mapper.Map <UserDto>(user);
+        }
+
+        public UserDto ChangeUserData(UserDto changedUserDto)
+        {
+            var changedUser = _mapper.Map<User>(changedUserDto);
+            var userWithNewData = _usersRepository.ChangeUserData(changedUser);
+
+            return _mapper.Map<UserDto>(userWithNewData);
+        }
     }
 }

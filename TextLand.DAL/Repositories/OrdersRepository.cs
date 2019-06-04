@@ -2,6 +2,7 @@
 using System.Linq;
 using TextLand.DAL.Data;
 using TextLand.DAL.Models;
+using TextLand.DAL.Repositories.Interfaces;
 
 namespace TextLand.DAL.Repositories
 {

@@ -1,11 +1,27 @@
 ﻿using System.Linq;
 using TextLand.DAL.Data;
 using TextLand.DAL.Models;
+using TextLand.DAL.Repositories.Interfaces;
 
 namespace TextLand.DAL.Repositories
 {
     public class UsersRepository : IUsersRepository
     {
+        public User ChangeUserData(User changedUser)
+        {
+            using (var dbContext = new TextLandDbContext())
+            {
+                var modifyingUser = GetUserById(changedUser.UserId);
+                if (modifyingUser == null) return null;
+
+                dbContext.Users.Attach(modifyingUser);
+                dbContext.Entry(modifyingUser).CurrentValues.SetValues(changedUser);
+                dbContext.SaveChanges();
+
+                var newUser = GetUserById(changedUser.UserId);
+                return newUser;
+            }
+        }
 
         public bool DeleteUser(User userToDelete, string password)
         {
@@ -33,6 +49,15 @@ namespace TextLand.DAL.Repositories
             {
                 var user = dbContext.Users.SingleOrDefault(x => x.UserId == userId);
                 return user;
+            }
+        }
+
+        public User LogIn(string email, string password)
+        {
+            using (var dbContext = new TextLandDbContext())
+            {
+                var user = dbContext.Users.SingleOrDefault(x => x.Email == email);
+                return (user != null && user.Password == password) ? user : null;
             }
         }
 

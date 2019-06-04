@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TextLand.DAL.Models;
 
-namespace TextLand.DAL.Repositories
+namespace TextLand.DAL.Repositories.Interfaces
 {
     public interface IOrdersRepository
     {

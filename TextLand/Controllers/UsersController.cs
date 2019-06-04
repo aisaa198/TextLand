@@ -27,10 +27,24 @@ namespace TextLand.Controllers
         {
             return _usersService.RegisterUser(newUserDto);
         }
-        
+
+        [HttpGet]
+        [Route("api/users/GetUserById")]
         public UserDto GetUserById(int userId)
         {
             return _usersService.GetUserById(userId);
+        }
+
+        [HttpGet]
+        [Route("api/users/LogIn")]
+        public UserDto LogIn(string email, string password)
+        {
+            return _usersService.LogIn(email, password);
+        }
+
+        public UserDto ChangeUserData (UserDto changedUserDto)
+        {
+            return _usersService.ChangeUserData(changedUserDto);
         }
 
         public bool DeleteUser(int userId, string password)

@@ -6,7 +6,7 @@ using TextLand.BL.Models;
 using TextLand.BL.Services.Interfaces;
 using TextLand.Common;
 using TextLand.DAL.Models;
-using TextLand.DAL.Repositories;
+using TextLand.DAL.Repositories.Interfaces;
 
 namespace TextLand.BL.Services
 {

@@ -9,5 +9,7 @@ namespace TextLand.BL.Services.Interfaces
         UserDto GetUserByEmail(string email);
         UserDto GetUserById(int userId);
         bool DeleteUser(int userId, string password);
+        UserDto LogIn(string login, string password);
+        UserDto ChangeUserData(UserDto changedUserDto);
     }
 }

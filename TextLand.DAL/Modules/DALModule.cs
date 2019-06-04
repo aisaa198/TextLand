@@ -1,5 +1,6 @@
 ﻿using Ninject.Modules;
 using TextLand.DAL.Repositories;
+using TextLand.DAL.Repositories.Interfaces;
 
 namespace TextLand.DAL.Modules
 {
