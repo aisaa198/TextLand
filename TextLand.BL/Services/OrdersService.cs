@@ -15,15 +15,17 @@ namespace TextLand.BL.Services
         private readonly IMapper _mapper;
         private readonly IOrdersRepository _ordersRepository;
         private readonly IUsersService _usersService;
+        private readonly IUsersRepository _usersRepository;
         
-        public OrdersService (IMapper mapper, IOrdersRepository ordersRepository, IUsersService usersService)
+        public OrdersService (IMapper mapper, IOrdersRepository ordersRepository, IUsersService usersService, IUsersRepository usersRepository)
         {
             _mapper = mapper;
             _ordersRepository = ordersRepository;
             _usersService = usersService;
+            _usersRepository = usersRepository;
         }
 
-        private OrderDto CreateExampleOrder()
+        public OrderDto AddExampleOrder()
         {
             var user = _usersService.GetUserByEmail("mariann@gmail.com") ?? _usersService.AddExampleUser();
             var createdOrder = new OrderDto
@@ -34,22 +36,18 @@ namespace TextLand.BL.Services
                     "szkoła",
                     "przedszkole"
                 },
-                NumberOfCharacters = 2000,
-                AddingUser = user,
-                Status = false
+                NumberOfCharacters = 20,
+                IsDone = false
             };
 
-            return createdOrder;
+            return AddOrder(createdOrder, user.UserId);
         }
 
-        public OrderDto AddExampleOrder()
+        public OrderDto AddOrder(OrderDto orderDto, int userId)
         {
-            var exampleOrder = CreateExampleOrder();
-            return AddOrder(exampleOrder);
-        }
+            var user = _usersService.GetUserById(userId);
+            orderDto.AddingUser = user;
 
-        public OrderDto AddOrder(OrderDto orderDto)
-        {
             if (orderDto == null) return null;
             orderDto.Value = CountValue(orderDto);
             var order = _mapper.Map<Order>(orderDto);
@@ -62,11 +60,11 @@ namespace TextLand.BL.Services
             return _ordersRepository.GetUndoneOrders().Select(order => _mapper.Map<OrderDto>(order)).ToList();
         }
 
-        public OrderDto AddTextToOrder(int orderId, string text)
+        public OrderDto AddTextToOrder(int orderId, int executingUserId, string text)
         {
             var order = _ordersRepository.GetOrderById(orderId);
             if (order == null) return null;
-            if (order.Status == true)
+            if (order.IsDone == true)
             {
                 Console.WriteLine("Order has already done!");
                 return null;
@@ -77,7 +75,8 @@ namespace TextLand.BL.Services
                 return null;
             }
             order.Content = text;
-            order.Status = true;
+            order.IsDone = true;
+            order.ExecutingUser = _usersRepository.GetUserById(executingUserId);
             var orderWithText = _ordersRepository.AddTextToOrder(order);
 
             return _mapper.Map<OrderDto>(orderWithText);

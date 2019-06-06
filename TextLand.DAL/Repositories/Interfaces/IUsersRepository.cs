@@ -10,5 +10,6 @@ namespace TextLand.DAL.Repositories.Interfaces
         bool DeleteUser(User userToDelete, string password);
         User LogIn(string email, string password);
         User ChangeUserData(User changedUser);
+        bool SetAdminPrivilage(int userId);
     }
 }

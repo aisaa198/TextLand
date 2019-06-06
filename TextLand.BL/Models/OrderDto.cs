@@ -13,7 +13,8 @@ namespace TextLand.BL.Models
         public UserDto ExecutingUser { get; set; }
         public UserDto AddingUser { get; set; }
         public string Content { get; set; }
-        public bool Status { get; set; }
+        public bool IsDone { get; set; }
+        public bool IsPaid { get; set; }
         public double Value { get; set; }
     }
 }

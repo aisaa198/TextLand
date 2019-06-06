@@ -32,7 +32,8 @@ namespace TextLand.DAL.Repositories
 
                 var modifiedOrder = dbContext.Orders.Attach(order);
                 dbContext.Entry(modifiedOrder).Property(x => x.Content).IsModified = true;
-                dbContext.Entry(modifiedOrder).Property(x => x.Status).IsModified = true;
+                dbContext.Entry(modifiedOrder).Property(x => x.IsDone).IsModified = true;
+                dbContext.Entry(modifiedOrder).Reference(x => x.ExecutingUser).IsLoaded = true;
                 dbContext.SaveChanges();
                 return modifiedOrder;
             }
@@ -42,7 +43,7 @@ namespace TextLand.DAL.Repositories
         {
             using (var dbContext = new TextLandDbContext())
             {
-                return dbContext.Orders.Where(order => order.Status == false).ToList();
+                return dbContext.Orders.Where(order => order.IsDone == false).ToList();
             }
         }
 

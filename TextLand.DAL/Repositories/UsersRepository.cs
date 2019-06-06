@@ -63,16 +63,31 @@ namespace TextLand.DAL.Repositories
 
         public User RegisterUser(User user)
         {
-            using (var DbContext = new TextLandDbContext())
+            using (var dbContext = new TextLandDbContext())
             {
                 var existingUser = GetUserByEmail(user.Email);
                 if (existingUser != null) return null;
 
-                var newUser = DbContext.Users.Add(user);
-                DbContext.SaveChanges();
+                var newUser = dbContext.Users.Add(user);
+                dbContext.SaveChanges();
                 return newUser;
             }
         }
-        
+
+        public bool SetAdminPrivilage(int userId)
+        {
+            using (var dbContext = new TextLandDbContext())
+            {
+                var user = GetUserById(userId);
+                if (user == null) return false;
+
+                user.IsAdmin = true;
+                dbContext.Users.Attach(user);
+                dbContext.Entry(user).Property(x => x.IsAdmin).IsModified = true;
+                dbContext.SaveChanges();
+
+                return (GetUserById(userId).IsAdmin == true) ? true : false;
+            }
+        }
     }
 }

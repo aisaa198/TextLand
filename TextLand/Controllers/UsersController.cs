@@ -1,6 +1,5 @@
 ﻿using System.Web.Http;
 using TextLand.BL.Models;
-using TextLand.BL.Services;
 using TextLand.BL.Services.Interfaces;
 
 namespace TextLand.Controllers
@@ -42,6 +41,8 @@ namespace TextLand.Controllers
             return _usersService.LogIn(email, password);
         }
 
+        [HttpPut]
+        [Route("api/users/ChangeUserData")]
         public UserDto ChangeUserData (UserDto changedUserDto)
         {
             return _usersService.ChangeUserData(changedUserDto);
@@ -50,6 +51,13 @@ namespace TextLand.Controllers
         public bool DeleteUser(int userId, string password)
         {
             return _usersService.DeleteUser(userId, password);
+        }
+
+        [HttpPut]
+        [Route("api/users/SetAdminPrivilage")]
+        public bool SetAdminPrivilage(int userId)
+        {
+            return _usersService.SetAdminPrivilage(userId);
         }
     }
 }

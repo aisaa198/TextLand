@@ -37,13 +37,23 @@ namespace TextLand.BL.Services
 
         public UserDto RegisterUser(UserDto userDto)
         {
-            if (userDto == null || string.IsNullOrEmpty(userDto.Email) || string.IsNullOrEmpty(userDto.Password) || string.IsNullOrEmpty(userDto.Name)) return null;
-            var userWithTheSameEmail = _usersRepository.GetUserByEmail(userDto.Email);
-            if (userWithTheSameEmail != null) return null;
+            if (CheckUserData(userDto))
+            {
+                var user = _mapper.Map<User>(userDto);
+                user.AddedOrders = null;
+                user.ExecutedOrders = null;
+                var registeredUser = _usersRepository.RegisterUser(user);
+                return _mapper.Map<UserDto>(registeredUser);
+            }
+            else return null;
+        }
 
-            var user = _mapper.Map<User>(userDto);
-            var registeredUser = _usersRepository.RegisterUser(user);
-            return _mapper.Map<UserDto>(registeredUser);
+        private bool CheckUserData(UserDto userToCheck)
+        {
+            if (userToCheck == null || string.IsNullOrEmpty(userToCheck.Email) || string.IsNullOrEmpty(userToCheck.Password) || string.IsNullOrEmpty(userToCheck.Name)) return false;
+            var userWithTheSameEmail = _usersRepository.GetUserByEmail(userToCheck.Email);
+            if (userWithTheSameEmail != null) return false;
+            return true;
         }
 
         public UserDto AddExampleUser ()
@@ -73,10 +83,18 @@ namespace TextLand.BL.Services
 
         public UserDto ChangeUserData(UserDto changedUserDto)
         {
-            var changedUser = _mapper.Map<User>(changedUserDto);
-            var userWithNewData = _usersRepository.ChangeUserData(changedUser);
+            if (CheckUserData(changedUserDto))
+            {
+                var changedUser = _mapper.Map<User>(changedUserDto);
+                var userWithNewData = _usersRepository.ChangeUserData(changedUser);
+                return _mapper.Map<UserDto>(userWithNewData);
+            }
+            else return null;
+        }
 
-            return _mapper.Map<UserDto>(userWithNewData);
+        public bool SetAdminPrivilage(int userId)
+        {
+            return _usersRepository.SetAdminPrivilage(userId);
         }
     }
 }

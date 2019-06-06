@@ -13,7 +13,8 @@ namespace TextLand.DAL.Models
         public User ExecutingUser { get; set; }
         public User AddingUser { get; set; }
         public string Content { get; set; }
-        public bool Status { get; set; }
+        public bool IsDone { get; set; }
+        public bool IsPaid { get; set; }
         public double Value { get; set; }
     }
 }

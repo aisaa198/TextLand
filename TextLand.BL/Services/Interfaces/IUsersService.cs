@@ -11,5 +11,6 @@ namespace TextLand.BL.Services.Interfaces
         bool DeleteUser(int userId, string password);
         UserDto LogIn(string login, string password);
         UserDto ChangeUserData(UserDto changedUserDto);
+        bool SetAdminPrivilage(int userId);
     }
 }
