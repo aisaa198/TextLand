@@ -34,9 +34,16 @@ namespace TextLand.Controllers
 
         [HttpGet]
         [Route("api/orders/ExportOrder")]
-        public bool ExportOrder(int orderId, string fileName)
+        public bool ExportOrderToFile(int orderId, string fileName)
         {
             return _ordersService.ExportOrder(orderId, fileName);
+        }
+
+        [HttpGet]
+        [Route("api/orders/GetAddedOrder")]
+        public List<OrderDto> GetAddedOrder(int userId)
+        {
+            return _ordersService.GetAddedOrders(userId);
         }
 
         [HttpPut]

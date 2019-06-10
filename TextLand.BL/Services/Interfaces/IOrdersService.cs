@@ -10,5 +10,6 @@ namespace TextLand.BL.Services.Interfaces
         OrderDto AddTextToOrder(int orderId, int executingUserId, string text);
         bool ExportOrder(int orderId, string fileName);
         OrderDto AddOrder(OrderDto newOrder, int userId);
+        List<OrderDto> GetAddedOrders(int userId);
     }
 }

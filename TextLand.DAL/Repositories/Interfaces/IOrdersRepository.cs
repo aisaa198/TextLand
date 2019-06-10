@@ -9,5 +9,6 @@ namespace TextLand.DAL.Repositories.Interfaces
         List<Order> GetUndoneOrders();
         Order AddTextToOrder(Order order);
         Order GetOrderById(int orderId);
+        IEnumerable<object> GetAddedOrders(int userId);
     }
 }

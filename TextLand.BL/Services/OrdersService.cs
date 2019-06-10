@@ -122,5 +122,11 @@ namespace TextLand.BL.Services
                 return false;
             }
         }
+
+        public List<OrderDto> GetAddedOrders(int userId)
+        {
+            if (_usersService.GetUserById(userId) == null) return null;
+            return _ordersRepository.GetAddedOrders(userId).Select(order => _mapper.Map<OrderDto>(order)).ToList();
+        }
     }
 }

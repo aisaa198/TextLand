@@ -96,5 +96,10 @@ namespace TextLand.BL.Services
         {
             return _usersRepository.SetAdminPrivilage(userId);
         }
+
+        public bool RechargeAccount(int userId, decimal amount)
+        {
+            return (amount < 0) ? false : _usersRepository.RechargeAccount(userId, amount);
+        }
     }
 }

@@ -61,6 +61,21 @@ namespace TextLand.DAL.Repositories
             }
         }
 
+        public bool RechargeAccount(int userId, decimal amount)
+        {
+            using (var dbContext = new TextLandDbContext())
+            {
+                var user = GetUserById(userId);
+                if (user == null) return false;
+
+                user.AccountForAddingOrders += amount;
+                dbContext.Users.Attach(user);
+                dbContext.Entry(user).Property(x => x.AccountForAddingOrders).IsModified = true;
+                dbContext.SaveChanges();
+                return true;
+            }
+        }
+
         public User RegisterUser(User user)
         {
             using (var dbContext = new TextLandDbContext())

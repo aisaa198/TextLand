@@ -42,6 +42,13 @@ namespace TextLand.Controllers
         }
 
         [HttpPut]
+        [Route("api/users/RechargeAccount")]
+        public bool RechargeAccount(int userId, decimal amount)
+        {
+            return _usersService.RechargeAccount(userId, amount);
+        }
+
+        [HttpPut]
         [Route("api/users/ChangeUserData")]
         public UserDto ChangeUserData (UserDto changedUserDto)
         {
