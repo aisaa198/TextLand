@@ -12,9 +12,9 @@ namespace TextLand.BL.Models
         public string Address { get; set; }
         public ICollection<OrderDto> AddedOrders { get; set; }
         public ICollection<OrderDto> ExecutedOrders { get; set; }
-        public decimal AccountForAddingOrders { get; set; }
-        public decimal AccountForCompletedOrders { get; set; }
-        public decimal Rating { get; set; }
+        public double AccountForAddingOrders { get; set; }
+        public double AccountForCompletedOrders { get; set; }
+        public double Rating { get; set; }
         public bool IsAdmin { get; set; }
     }
 }

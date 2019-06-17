@@ -15,6 +15,7 @@ namespace TextLand.BL.Modules
             Bind<IMapper>().ToProvider<MapperProvider>();
             Bind<IUsersService>().To<UsersService>();
             Bind<IOrdersService>().To<OrdersService>();
+            Bind<IAdminsService>().To<AdminsService>();
         }
     }
 }

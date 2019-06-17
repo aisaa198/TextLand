@@ -10,19 +10,18 @@ namespace TextLand.DAL.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Payoff> Payoffs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Order>()
                .HasRequired(o => o.AddingUser)
                .WithMany(u => u.AddedOrders)
-               //.HasForeignKey(c => c.OwnerId)
                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Order>()
                .HasOptional(o => o.ExecutingUser)
                .WithMany(u => u.ExecutedOrders)
-               //.HasForeignKey(c => c.MainDriverId)
                .WillCascadeOnDelete(false);
         }
 

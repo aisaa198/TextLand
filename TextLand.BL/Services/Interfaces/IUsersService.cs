@@ -12,6 +12,7 @@ namespace TextLand.BL.Services.Interfaces
         UserDto LogIn(string login, string password);
         UserDto ChangeUserData(UserDto changedUserDto);
         bool SetAdminPrivilage(int userId);
-        bool RechargeAccount(int userId, decimal amount);
+        bool RechargeAccount(int userId, double amount);
+        bool PayOff(int userId);
     }
 }

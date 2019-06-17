@@ -10,6 +10,7 @@ namespace TextLand.DAL.Modules
         {
             Bind<IOrdersRepository>().To<OrdersRepository>();
             Bind<IUsersRepository>().To<UsersRepository>();
+            Bind<IAdminsRepository>().To<AdminsRepository>();
         }
     }
 }

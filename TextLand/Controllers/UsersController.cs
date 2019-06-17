@@ -43,7 +43,7 @@ namespace TextLand.Controllers
 
         [HttpPut]
         [Route("api/users/RechargeAccount")]
-        public bool RechargeAccount(int userId, decimal amount)
+        public bool RechargeAccount(int userId, double amount)
         {
             return _usersService.RechargeAccount(userId, amount);
         }
@@ -65,6 +65,13 @@ namespace TextLand.Controllers
         public bool SetAdminPrivilage(int userId)
         {
             return _usersService.SetAdminPrivilage(userId);
+        }
+
+        [HttpPut]
+        [Route("api/users/PayOff")]
+        public bool PayOff (int userId)
+        {
+            return _usersService.PayOff(userId);
         }
     }
 }

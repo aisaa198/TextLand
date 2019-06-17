@@ -11,5 +11,6 @@ namespace TextLand.BL.Services.Interfaces
         bool ExportOrder(int orderId, string fileName);
         OrderDto AddOrder(OrderDto newOrder, int userId);
         List<OrderDto> GetAddedOrders(int userId);
+        bool AcceptOrder(int orderId, int addedUserId);
     }
 }

@@ -9,7 +9,7 @@ namespace TextLand.DAL.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "TextLand.DAL.Data.TextLandDbContext";
         }
 

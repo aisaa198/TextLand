@@ -37,12 +37,6 @@ namespace TextLand.DAL.Repositories
                 order.Content = madeOrder.Content;
                 order.IsDone = madeOrder.IsDone;
                 order.ExecutingUser = madeOrder.ExecutingUser;
-                
-                //dbContext.Entry(madeOrder.ExecutingUser).State = EntityState.Modified;
-
-                //dbContext.Orders.Attach(madeOrder);
-                //dbContext.Entry(madeOrder).Property(x => x.Content).IsModified = true;
-                //dbContext.Entry(madeOrder).Property(x => x.IsDone).IsModified = true;
                 dbContext.Users.Attach(madeOrder.ExecutingUser);
                 dbContext.SaveChanges();
 
@@ -71,6 +65,22 @@ namespace TextLand.DAL.Repositories
             using (var dbContext = new TextLandDbContext())
             {
                 return dbContext.Orders.Where(x => x.AddingUser.UserId == userId).ToList();
+            }
+        }
+
+        public bool AcceptOrder(Order order)
+        {
+            using (var dbContext = new TextLandDbContext())
+            {
+                order.IsPaid = true;
+                dbContext.Orders.Attach(order);
+                dbContext.Entry(order).Property(x => x.IsPaid).IsModified = true;
+
+                dbContext.Users.Attach(order.ExecutingUser);
+                order.ExecutingUser.AccountForCompletedOrders += order.Value;
+
+                dbContext.SaveChanges();
+                return (GetOrderById(order.OrderId).IsPaid == true) ? true : false;
             }
         }
     }

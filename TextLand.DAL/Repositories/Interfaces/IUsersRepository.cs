@@ -11,6 +11,8 @@ namespace TextLand.DAL.Repositories.Interfaces
         User LogIn(string email, string password);
         User ChangeUserData(User changedUser);
         bool SetAdminPrivilage(int userId);
-        bool RechargeAccount(int userId, decimal amount);
+        bool RechargeAccount(int userId, double amount);
+        bool PayOff(Payoff payoff);
+        double ResetAccount(User user);
     }
 }

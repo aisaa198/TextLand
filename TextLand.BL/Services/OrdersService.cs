@@ -45,10 +45,14 @@ namespace TextLand.BL.Services
 
         public OrderDto AddOrder(OrderDto orderDto, int userId)
         {
+            if (orderDto == null) return null;
             var user = _usersService.GetUserById(userId);
             orderDto.AddingUser = user;
-
-            if (orderDto == null) return null;
+            orderDto.ExecutingUser = null;
+            orderDto.IsDone = false;
+            orderDto.IsPaid = false;
+            orderDto.Content = null;
+            
             orderDto.Value = CountValue(orderDto);
             var order = _mapper.Map<Order>(orderDto);
             var addedOrder = _ordersRepository.AddOrder(order);
@@ -63,7 +67,7 @@ namespace TextLand.BL.Services
         public OrderDto AddTextToOrder(int orderId, int executingUserId, string text)
         {
             var order = _ordersRepository.GetOrderById(orderId);
-            if (order == null) return null;
+            if (order == null || order.AddingUser.UserId == executingUserId) return null;
             if (order.IsDone == true)
             {
                 Console.WriteLine("Order has already done!");
@@ -127,6 +131,13 @@ namespace TextLand.BL.Services
         {
             if (_usersService.GetUserById(userId) == null) return null;
             return _ordersRepository.GetAddedOrders(userId).Select(order => _mapper.Map<OrderDto>(order)).ToList();
+        }
+
+        public bool AcceptOrder(int orderId, int addedUserId)
+        {
+            var order = _ordersRepository.GetOrderById(orderId);
+            if (order == null || order.AddingUser.UserId != addedUserId || order.IsDone == false || order.ExecutingUser == null || order.IsPaid == true) return false;
+            return _ordersRepository.AcceptOrder(order);
         }
     }
 }

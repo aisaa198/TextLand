@@ -61,7 +61,18 @@ namespace TextLand.DAL.Repositories
             }
         }
 
-        public bool RechargeAccount(int userId, decimal amount)
+        public bool PayOff(Payoff payoff)
+        {
+            using (var dbContext = new TextLandDbContext())
+            {
+                dbContext.Users.Attach(payoff.RequestingUser);
+                var newPayoff = dbContext.Payoffs.Add(payoff);
+                dbContext.SaveChanges();
+                return (newPayoff != null) ? true : false;
+            }
+        }
+
+        public bool RechargeAccount(int userId, double amount)
         {
             using (var dbContext = new TextLandDbContext())
             {
@@ -86,6 +97,18 @@ namespace TextLand.DAL.Repositories
                 var newUser = dbContext.Users.Add(user);
                 dbContext.SaveChanges();
                 return newUser;
+            }
+        }
+
+        public double ResetAccount(User user)
+        {
+            using (var dbContext = new TextLandDbContext())
+            {
+                dbContext.Users.Attach(user);
+                user.AccountForCompletedOrders = 0;
+                dbContext.Entry(user).Property(x => x.AccountForCompletedOrders).IsModified = true;
+                dbContext.SaveChanges();
+                return GetUserById(user.UserId).AccountForCompletedOrders;
             }
         }
 

@@ -17,14 +17,15 @@ namespace TextLand.BL.Services
             _usersRepository = usersRepository;
         }
 
-        private UserDto CreateUser ()
+        private UserDto CreateExampleUser ()
         {
             var createdUser = new UserDto
             {
                 Name = "Marian",
                 Surname = "Nowak",
                 Email = "mariann@gmail.com",
-                Password = "marian"
+                Password = "marian",
+                IsAdmin = true
             };
             return createdUser;
         }
@@ -58,7 +59,7 @@ namespace TextLand.BL.Services
 
         public UserDto AddExampleUser ()
         {
-            var createdUser = CreateUser();
+            var createdUser = CreateExampleUser();
             return RegisterUser(createdUser);
         }
 
@@ -97,9 +98,28 @@ namespace TextLand.BL.Services
             return _usersRepository.SetAdminPrivilage(userId);
         }
 
-        public bool RechargeAccount(int userId, decimal amount)
+        public bool RechargeAccount(int userId, double amount)
         {
             return (amount < 0) ? false : _usersRepository.RechargeAccount(userId, amount);
+        }
+
+        public bool PayOff(int userId)
+        {
+            var user = _usersRepository.GetUserById(userId);
+            if (user == null || user.AccountForCompletedOrders <= 0) return false;
+
+            var payoff = new Payoff()
+            {
+                RequestingUser = user,
+                Value = user.AccountForCompletedOrders
+            };
+            ResetAccount(user); //to chcę stąd wywalić i zrobić w inny sposób
+            return _usersRepository.PayOff(payoff);
+        }
+
+        private double ResetAccount(User user)
+        {
+            return _usersRepository.ResetAccount(user);
         }
     }
 }

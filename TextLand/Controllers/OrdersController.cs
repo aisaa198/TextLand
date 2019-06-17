@@ -38,6 +38,13 @@ namespace TextLand.Controllers
         {
             return _ordersService.ExportOrder(orderId, fileName);
         }
+        
+        [HttpPut]
+        [Route("api/orders/AcceptOrder")]
+        public bool AcceptOrder(int orderId, int addedUserId)
+        {
+            return _ordersService.AcceptOrder(orderId, addedUserId);
+        }
 
         [HttpGet]
         [Route("api/orders/GetAddedOrder")]

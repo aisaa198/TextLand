@@ -10,5 +10,6 @@ namespace TextLand.DAL.Repositories.Interfaces
         Order AddTextToOrder(Order order);
         Order GetOrderById(int orderId);
         IEnumerable<object> GetAddedOrders(int userId);
+        bool AcceptOrder(Order order);
     }
 }

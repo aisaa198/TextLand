@@ -18,3 +18,6 @@ C:\Users\User\source\repos\TextLand\TextLand.DAL\obj\Debug\TextLand.DAL.csproj.G
 C:\Users\User\source\repos\TextLand\TextLand.DAL\obj\Debug\TextLand.DAL.Migrations.AddedTextToOrder.resources
 C:\Users\User\source\repos\TextLand\TextLand.DAL\obj\Debug\TextLand.DAL.Migrations.AddedValueAndIsAdmin.resources
 C:\Users\User\source\repos\TextLand\TextLand.DAL\obj\Debug\TextLand.DAL.Migrations.AddIsDoneAndIsPaidToOrder.resources
+C:\Users\User\source\repos\TextLand\TextLand.DAL\obj\Debug\TextLand.DAL.Migrations.ChangedRecuiredProperties.resources
+C:\Users\User\source\repos\TextLand\TextLand.DAL\obj\Debug\TextLand.DAL.Migrations.ChangedTypesOfVariablesFromDecimalToDouble.resources
+C:\Users\User\source\repos\TextLand\TextLand.DAL\obj\Debug\TextLand.DAL.Migrations.AddedPayoff.resources
