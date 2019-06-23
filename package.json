@@ -1,0 +1,20 @@
+{
+  "name": "textland-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aisaa198/TextLand.git"
+  },
+  "author": "Joanna Trapp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aisaa198/TextLand/issues"
+  },
+  "homepage": "https://github.com/aisaa198/TextLand#readme",
+  "devDependencies": {
+  }
+}
